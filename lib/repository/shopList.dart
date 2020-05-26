@@ -1,23 +1,28 @@
-class Item{
-  final String id;
-  final String name;
-  final String price;
-  final String imageUrl;
-  Item({this.id,this.name,this.price,this.imageUrl});
-}
+import 'dart:ffi';
 
-final List<Item> mock = <Item>[
-  Item(id: "1",name: "Hamburger 1",price: "10.00R\$",imageUrl: "https://www.teclasap.com.br/wp-content/uploads/2011/05/hamburger.jpg"),
-  Item(id: "2",name: "Hamburger 2",price: "32.00R\$",imageUrl: "https://www.teclasap.com.br/wp-content/uploads/2011/05/hamburger.jpg"),
-  Item(id: "3",name: "Hamburger 3",price: "12.00R\$",imageUrl: "https://www.teclasap.com.br/wp-content/uploads/2011/05/hamburger.jpg"),
-  
-  ];
+import 'package:flutter_shop/model/shopItem.dart';
+
 
 class ShopRepo{
-  static List<Item> getList(){
-    return mock;
+
+  final List<ShopItem> mock = <ShopItem>[
+    ShopItem(id: "1",name: "Hamburger 1",description: "Bread, 180g Mix Artesanal Meat, Cheese and Tomate",price: 10.0,imageUrl: "https://www.teclasap.com.br/wp-content/uploads/2011/05/hamburger.jpg"),
+    ShopItem(id: "2",name: "Hamburger 2",description: "Bread, 180g Mix Artesanal Meat, Cheese and Tomate",price: 32,imageUrl: "https://www.teclasap.com.br/wp-content/uploads/2011/05/hamburger.jpg"),
+    ShopItem(id: "3",name: "Hamburger 3",description: "Bread, 180g Mix Artesanal Meat, Cheese and Tomate",price: 12,imageUrl: "https://www.teclasap.com.br/wp-content/uploads/2011/05/hamburger.jpg"),
+    ];
+
+  ShopRepo._privateConstructor();
+  static final ShopRepo _instance = ShopRepo._privateConstructor();
+
+  factory ShopRepo(){
+    return _instance;
   }
-  static Item getByID(String id){
-    return mock.firstWhere((element) => element.id == id);
+
+  List<ShopItem> getList(){
+    return this.mock;
+  }
+  
+  ShopItem getByID(String id){
+    return this.mock.firstWhere((element) => element.id == id);
   }
 }
